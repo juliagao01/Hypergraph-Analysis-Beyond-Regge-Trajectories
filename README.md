@@ -4,7 +4,7 @@ A novel framework for analyzing hadron spectroscopy by bridging Regge trajectory
 
 ## Overview
 
-This repository contains the complete analysis code, data, and documentation for the paper "Hypergraph-Based Decay Analysis for Predicting and Classifying States Beyond Regge Trajectories" (Gao, 2025).
+This repository contains the complete analysis code, data, and documentation for the paper "Hypergraph-Based Decay Analysis for Predicting and Classifying States Beyond Regge Trajectories".
 
 Traditional Regge trajectory analysis provides powerful insights into hadron spectra but offers no systematic way to assess prediction reliability. This work introduces a **confidence-graded prediction framework** that combines:
 
