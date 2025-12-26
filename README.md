@@ -154,7 +154,7 @@ If you use this code or methodology in your research, please cite:
 @article{gao2025hypergraph,
   title={Hypergraph-Based Decay Analysis for Predicting and Classifying States Beyond Regge Trajectories},
   author={Gao, Julia},
-  year={2025},
+  year={2025}
 }
 ```
 
