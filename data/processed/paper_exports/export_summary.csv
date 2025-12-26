@@ -1,0 +1,12 @@
+Type,Filename,Format,Filepath,Timestamp,HasMetadata
+table,regge_fit_parameters,json,paper_exports/regge_fit_parameters.json,2025-08-16T20:48:06.356177,False
+table,mass_predictions,csv,paper_exports/mass_predictions.csv,2025-08-16T20:48:06.359839,False
+table,pdg_cross_check_results,csv,paper_exports/pdg_cross_check_results.csv,2025-08-16T20:48:06.362046,False
+table,regge_diagnostics,json,paper_exports/regge_diagnostics.json,2025-08-16T20:48:06.362768,False
+table,hypergraph_metrics,json,paper_exports/hypergraph_metrics.json,2025-08-16T20:48:06.363934,False
+table,motif_analysis,json,paper_exports/motif_analysis.json,2025-08-16T20:48:06.364722,False
+table,method_comparison,csv,paper_exports/method_comparison.csv,2025-08-16T20:48:06.368087,False
+table,performance_metrics,json,paper_exports/performance_metrics.json,2025-08-16T20:48:06.370691,False
+table,baseline_analysis,json,paper_exports/baseline_analysis.json,2025-08-16T20:48:06.372086,False
+table,stability_metrics,json,paper_exports/stability_metrics.json,2025-08-16T20:48:06.372481,False
+table,data_changes,json,paper_exports/data_changes.json,2025-08-16T20:48:06.372727,False

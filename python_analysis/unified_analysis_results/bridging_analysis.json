@@ -1,0 +1,51 @@
+{
+  "correlations": {
+    "width_vs_residual": {
+      "correlation": 0.8805241835105985,
+      "p_value": 3.0301461718496556e-07
+    },
+    "entropy_vs_residual": {
+      "correlation": -0.32404187516141014,
+      "p_value": 0.1633793124535036
+    },
+    "purity_vs_residual": {
+      "correlation": 0.019845403641781664,
+      "p_value": 0.9338162305463538
+    },
+    "triangle_vs_residual": {
+      "correlation": 0.33144416481428784,
+      "p_value": 0.15342249464597466
+    }
+  },
+  "regression": {
+    "coefficients": {
+      "width_gev": 8.410697122077046,
+      "product_entropy": -0.8014599451759719,
+      "community_purity": 0.544256451339569,
+      "triangle_z_score": -0.07430547240417876,
+      "degree": -0.03909125453723962,
+      "clustering_coefficient": -0.409746931606213
+    },
+    "intercept": 0.02915821745220537,
+    "r2": 0.7996796031256699,
+    "cv_r2_mean": -16.295697892398998,
+    "cv_r2_std": 10.022194322009742
+  },
+  "group_differences": {
+    "anova_f": 0.049646044425635416,
+    "anova_p": 0.9517036140886759,
+    "kruskal_h": 0.27414965986394435,
+    "kruskal_p": 0.8719049791006521,
+    "community_means": [
+      2.325190610173724,
+      2.6160663406011033,
+      2.371354696045491
+    ]
+  },
+  "predictive_utility": {
+    "baseline_r2": -8.235865285572089,
+    "full_model_r2": -16.295697892398998,
+    "improvement": -8.059832606826909,
+    "relative_improvement": 0
+  }
+}

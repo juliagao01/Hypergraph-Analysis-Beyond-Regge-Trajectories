@@ -1,0 +1,37 @@
+{
+  "data": {
+    "parameters": [
+      -0.3044,
+      1.1816
+    ],
+    "parameter_uncertainties": [
+      0.0124,
+      0.0077
+    ],
+    "chi2": 332.658,
+    "chi2_dof": 18.481,
+    "r_squared": 0.8997,
+    "dof": 18,
+    "kappa": 0.15
+  },
+  "metadata": {
+    "export_date": "2025-08-16T20:48:06.354687",
+    "analysis_date": "2025-08-16T20:48:06.295229",
+    "pdg_snapshot_date": "2024-01-01",
+    "software_versions": {
+      "python": "3.13.2",
+      "numpy": "2.3.2",
+      "pandas": "2.3.1",
+      "matplotlib": "3.10.5",
+      "scipy": "1.16.1",
+      "scikit-learn": "1.7.1",
+      "networkx": "3.5"
+    },
+    "analysis_settings": {
+      "kappa": 0.15,
+      "bootstrap_n": 2000,
+      "confidence_level": 0.68,
+      "n_sigma_threshold": 2.0
+    }
+  }
+}

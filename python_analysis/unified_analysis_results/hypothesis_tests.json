@@ -1,0 +1,26 @@
+{
+  "H1_quality_control": {
+    "supported": "False",
+    "width_correlation": 0.8805241835105985,
+    "width_p_value": 3.0301461718496556e-07,
+    "status_correlation": -0.3284698123156714,
+    "status_p_value": 0.15737128646550821
+  },
+  "H2_structure_deviation": {
+    "supported": "False",
+    "entropy_correlation": -0.32404187516141014,
+    "entropy_p_value": 0.1633793124535036,
+    "purity_correlation": 0.019845403641781664,
+    "purity_p_value": 0.9338162305463538
+  },
+  "H3_motifs": {
+    "supported": "False",
+    "triangle_correlation": 0.33144416481428784,
+    "triangle_p_value": 0.15342249464597466
+  },
+  "H4_predictive_gain": {
+    "supported": "False",
+    "absolute_improvement": -8.059832606826909,
+    "relative_improvement": 0
+  }
+}

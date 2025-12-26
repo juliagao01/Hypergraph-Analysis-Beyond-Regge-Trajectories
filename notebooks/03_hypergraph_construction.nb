@@ -1,0 +1,218 @@
+(* ::Package:: *)
+
+(* ===== Hypergraph Degree Distribution Analysis ===== *)
+
+(* Sample data for comprehensive analysis including both mesons and baryons *)
+particleData = {
+  (* Delta Baryons *)
+  {"Delta(1232)", "Delta", "Baryon", 1.5, 1.232, 2, 1.81, 0.61},
+  {"Delta(1600)", "Delta", "Baryon", 1.5, 1.6, 2, 1.17, 0.87},
+  {"Delta(1620)", "Delta", "Baryon", 2.5, 1.62, 7, 0.55, 0.65},
+  {"Delta(1700)", "Delta", "Baryon", 2.5, 1.7, 5, 1.58, 0.61},
+  {"Delta(1900)", "Delta", "Baryon", 3.5, 1.9, 3, 1.56, 0.76},
+  {"Delta(1905)", "Delta", "Baryon", 3.5, 1.905, 6, 1.66, 0.98},
+  {"Delta(1910)", "Delta", "Baryon", 4.5, 1.91, 6, 1.13, 0.90},
+  {"Delta(1920)", "Delta", "Baryon", 4.5, 1.92, 2, 1.44, 0.91},
+  {"Delta(1930)", "Delta", "Baryon", 5.5, 1.93, 3, 0.71, 0.71},
+  {"Delta(1950)", "Delta", "Baryon", 5.5, 1.95, 4, 1.13, 0.63},
+  
+  (* Rho Mesons *)
+  {"Rho(770)", "Rho", "Meson", 1.0, 0.775, 3, 1.45, 0.72},
+  {"Rho(1450)", "Rho", "Meson", 1.0, 1.465, 4, 1.32, 0.68},
+  {"Rho(1700)", "Rho", "Meson", 2.0, 1.72, 5, 1.28, 0.75},
+  {"Rho(1900)", "Rho", "Meson", 2.0, 1.88, 6, 1.56, 0.82},
+  {"Rho(2150)", "Rho", "Meson", 3.0, 2.15, 4, 1.23, 0.71},
+  
+  (* Omega Mesons *)
+  {"Omega(782)", "Omega", "Meson", 1.0, 0.783, 2, 1.12, 0.85},
+  {"Omega(1420)", "Omega", "Meson", 1.0, 1.425, 3, 1.34, 0.78},
+  {"Omega(1650)", "Omega", "Meson", 2.0, 1.67, 4, 1.45, 0.69},
+  {"Omega(1950)", "Omega", "Meson", 2.0, 1.95, 5, 1.67, 0.73},
+  {"Omega(2250)", "Omega", "Meson", 3.0, 2.25, 3, 1.23, 0.81}
+};
+
+(* Extract data columns *)
+names = particleData[[All, 1]];
+families = particleData[[All, 2]];
+types = particleData[[All, 3]];
+J = particleData[[All, 4]];
+mass = particleData[[All, 5]];
+degree = particleData[[All, 6]];
+entropy = particleData[[All, 7]];
+purity = particleData[[All, 8]];
+
+(* Create dataset *)
+dataset = Dataset[AssociationThread[
+  {"Name", "Family", "Type", "J", "Mass", "Degree", "Entropy", "Purity"} -> #] & /@ particleData];
+
+(* 1. Hypergraph Degree Distribution *)
+degreePlot = Show[
+  Histogram[degree, {1}, "Count", 
+    ChartStyle -> LightBlue, 
+    ChartLegends -> {"Degree Distribution"}],
+  Plot[Mean[degree], {x, 0, 10}, 
+    PlotStyle -> {Red, Dashed, Thick}, 
+    PlotLegends -> {Row[{"Mean: ", NumberForm[Mean[degree], {3, 1}]}]}],
+  Frame -> True,
+  FrameLabel -> {"Degree (Number of Decay Channels)", "Number of Resonances", "", ""},
+  PlotLabel -> Style["Hypergraph Degree Distribution", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* 2. Degree vs Mass by Particle Family *)
+familyPlot = ListPlot[
+  MapThread[
+    {#1, #2} &,
+    {mass, degree}
+  ],
+  PlotStyle -> MapThread[
+    {#1, PointSize[0.02]} &,
+    {ColorData["Rainbow"][#] & /@ Range[Length[families]], families}
+  ],
+  Frame -> True,
+  FrameLabel -> {"Mass (GeV)", "Degree (Number of Decay Channels)", "", ""},
+  PlotLabel -> Style["Degree vs Mass by Particle Family", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600,
+  PlotLegends -> families
+];
+
+(* 3. Fan-Out vs Fan-In Analysis *)
+fanPlot = ListPlot[
+  MapThread[
+    {#1, #2} &,
+    {degree, entropy}
+  ],
+  PlotStyle -> {Purple, PointSize[0.02]},
+  Frame -> True,
+  FrameLabel -> {"Fan-Out (Degree)", "Fan-In Complexity (Entropy)", "", ""},
+  PlotLabel -> Style["Fan-Out vs Fan-In Relationship", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* Add correlation line *)
+correlation = Correlation[degree, entropy];
+fanPlotWithLine = Show[
+  fanPlot,
+  Plot[LinearModelFit[Transpose[{degree, entropy}], x, x][x], {x, Min[degree], Max[degree]},
+    PlotStyle -> {Red, Dashed, Thick}],
+  Graphics[
+    Text[
+      Style[Row[{"Correlation: ", NumberForm[correlation, {4, 3}]}], 12],
+      {0.05, 0.95}, {-1, 1}
+    ]
+  ]
+];
+
+(* 4. Meson vs Baryon Comparison *)
+(* Separate data *)
+mesonData = Select[particleData, #[[3]] == "Meson" &];
+baryonData = Select[particleData, #[[3]] == "Baryon" &];
+
+mesonDegree = mesonData[[All, 6]];
+baryonDegree = baryonData[[All, 6]];
+mesonEntropy = mesonData[[All, 7]];
+baryonEntropy = baryonData[[All, 7]];
+mesonPurity = mesonData[[All, 8]];
+baryonPurity = baryonData[[All, 8]];
+
+(* Degree comparison *)
+degreeComparison = Show[
+  Histogram[{mesonDegree, baryonDegree}, 
+    ChartStyle -> {LightBlue, LightGreen},
+    ChartLegends -> {"Mesons", "Baryons"}],
+  Frame -> True,
+  FrameLabel -> {"Degree", "Number of Resonances", "", ""},
+  PlotLabel -> Style["Degree Distribution: Mesons vs Baryons", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* Entropy comparison *)
+entropyComparison = Show[
+  Histogram[{mesonEntropy, baryonEntropy}, 
+    ChartStyle -> {LightBlue, LightGreen},
+    ChartLegends -> {"Mesons", "Baryons"}],
+  Frame -> True,
+  FrameLabel -> {"Product Entropy", "Number of Resonances", "", ""},
+  PlotLabel -> Style["Entropy Distribution: Mesons vs Baryons", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* Purity comparison *)
+purityComparison = Show[
+  Histogram[{mesonPurity, baryonPurity}, 
+    ChartStyle -> {LightBlue, LightGreen},
+    ChartLegends -> {"Mesons", "Baryons"}],
+  Frame -> True,
+  FrameLabel -> {"Community Purity", "Number of Resonances", "", ""},
+  PlotLabel -> Style["Purity Distribution: Mesons vs Baryons", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* Box plot comparison *)
+boxPlotData = {
+  mesonDegree, baryonDegree,
+  mesonEntropy, baryonEntropy,
+  mesonPurity, baryonPurity
+};
+boxPlotLabels = {
+  "Meson Degree", "Baryon Degree",
+  "Meson Entropy", "Baryon Entropy", 
+  "Meson Purity", "Baryon Purity"
+};
+
+boxComparison = BoxWhiskerChart[boxPlotData,
+  ChartLabels -> boxPlotLabels,
+  ChartStyle -> {LightBlue, LightGreen, LightBlue, LightGreen, LightBlue, LightGreen},
+  Frame -> True,
+  FrameLabel -> {"", "Value", "", ""},
+  PlotLabel -> Style["Hypergraph Metrics: Mesons vs Baryons", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* Display all plots *)
+Print["=== HYPERGRAPH DEGREE DISTRIBUTION ==="];
+degreePlot
+
+Print["=== DEGREE VS MASS BY FAMILY ==="];
+familyPlot
+
+Print["=== FAN-OUT VS FAN-IN ANALYSIS ==="];
+fanPlotWithLine
+
+Print["=== MESON VS BARYON COMPARISONS ==="];
+degreeComparison
+entropyComparison
+purityComparison
+boxComparison
+
+(* Print summary statistics *)
+Print["=== HYPERGRAPH ANALYSIS SUMMARY ==="];
+Print["Degree Statistics:"];
+Print["  Overall mean degree: ", NumberForm[Mean[degree], {4, 2}]];
+Print["  Meson mean degree: ", NumberForm[Mean[mesonDegree], {4, 2}]];
+Print["  Baryon mean degree: ", NumberForm[Mean[baryonDegree], {4, 2}]];
+
+Print["Entropy Statistics:"];
+Print["  Overall mean entropy: ", NumberForm[Mean[entropy], {4, 2}]];
+Print["  Meson mean entropy: ", NumberForm[Mean[mesonEntropy], {4, 2}]];
+Print["  Baryon mean entropy: ", NumberForm[Mean[baryonEntropy], {4, 2}]];
+
+Print["Purity Statistics:"];
+Print["  Overall mean purity: ", NumberForm[Mean[purity], {4, 2}]];
+Print["  Meson mean purity: ", NumberForm[Mean[mesonPurity], {4, 2}]];
+Print["  Baryon mean purity: ", NumberForm[Mean[baryonPurity], {4, 2}]];
+
+Print["Correlation Analysis:"];
+Print["  Degree-Entropy correlation: ", NumberForm[correlation, {4, 3}]];
+
+(* Export plots *)
+Export["hypergraph_degree_distribution_wolfram.png", degreePlot, ImageResolution -> 300];
+Export["fan_in_fan_out_wolfram.png", fanPlotWithLine, ImageResolution -> 300];
+Export["meson_baryon_comparison_wolfram.png", boxComparison, ImageResolution -> 300];

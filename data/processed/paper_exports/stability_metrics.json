@@ -1,0 +1,58 @@
+{
+  "data": {
+    "parameter_shift": 0.5617796573022316,
+    "fit_quality_change": 185.5269479805216,
+    "prediction_shift": 0.056177965730223156,
+    "gap_count_change": 0,
+    "community_structure_change": 0.0,
+    "overall_stability_score": 0.0
+  },
+  "metadata": {
+    "export_date": "2025-08-16T20:48:06.372179",
+    "analysis_date": "2025-08-16T20:48:06.295229",
+    "pdg_snapshot_date": "2024-01-01",
+    "software_versions": {
+      "python": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 15.0.0 (clang-1500.1.0.2.5)]",
+      "numpy": "2.3.2",
+      "pandas": "2.3.1",
+      "matplotlib": "3.10.5",
+      "scipy": "1.16.1",
+      "scikit-learn": "1.7.1",
+      "networkx": "3.5"
+    },
+    "analysis_settings": {
+      "kappa": 0.25,
+      "bootstrap_n": 2000,
+      "confidence_level": 0.68,
+      "n_sigma_threshold": 2.0
+    }
+  },
+  "provenance": {
+    "analysis_date": "2025-08-16T20:48:06.295229",
+    "pdg_snapshot_date": "2024-01-01",
+    "software_versions": {
+      "python": "3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 15.0.0 (clang-1500.1.0.2.5)]",
+      "numpy": "2.3.2",
+      "pandas": "2.3.1",
+      "matplotlib": "3.10.5",
+      "scipy": "1.16.1",
+      "scikit-learn": "1.7.1",
+      "networkx": "3.5"
+    },
+    "analysis_settings": {
+      "kappa": 0.25,
+      "bootstrap_n": 2000,
+      "confidence_level": 0.68,
+      "n_sigma_threshold": 2.0
+    },
+    "data_hash": "",
+    "code_hash": "",
+    "platform_info": {
+      "platform": "macOS-13.4-arm64-arm-64bit-Mach-O",
+      "python_implementation": "CPython",
+      "python_version": "3.13.2",
+      "machine": "arm64",
+      "processor": "arm"
+    }
+  }
+}

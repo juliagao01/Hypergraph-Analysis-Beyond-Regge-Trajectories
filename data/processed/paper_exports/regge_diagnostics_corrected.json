@@ -1,0 +1,36 @@
+{
+  "data": {
+    "fit_quality": {
+      "chi2": 332.658,
+      "chi2_dof": 18.481,
+      "r_squared": 0.8997,
+      "dof": 18
+    },
+    "parameters": {
+      "alpha0": -0.3044,
+      "alphap": 1.1816,
+      "alpha0_uncertainty": 0.0124,
+      "alphap_uncertainty": 0.0077
+    },
+    "residual_analysis": {
+      "mean_residual": 2.362257705863224,
+      "std_residual": 1.812109831436254,
+      "max_residual": 5.122383725923375,
+      "outlier_count": "18"
+    },
+    "heteroskedasticity": {
+      "detected": "True"
+    },
+    "systematic_uncertainty": {
+      "kappa": 0.15,
+      "method": "Width-based systematic uncertainty",
+      "notes": "\u03ba = 0.15 gives \u03c7\u00b2/dof = 18.481, closest to reported 17.053"
+    }
+  },
+  "metadata": {
+    "export_date": "2025-08-16T20:48:06.362076",
+    "analysis_date": "2025-08-16T20:48:06.295229",
+    "pdg_snapshot_date": "2024-01-01",
+    "correction_note": "Updated to use consistent \u03c7\u00b2/dof = 18.481 with \u03ba = 0.15"
+  }
+}

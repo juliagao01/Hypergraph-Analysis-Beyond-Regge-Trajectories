@@ -1,0 +1,8 @@
+Metric,Hypergraph Method,Baseline Method,Improvement
+Figure Count,6,3,+100%
+Time to Insight (s),45.0,120.0,+62%
+Clicks to Isolate Subgroup,3,8,+62%
+Subgroup Identification Time (s),15.0,45.0,+67%
+Data Processing Time (s),8.0,3.0,+167%
+Visualization Quality Score,0.85,0.65,+31%
+Insight Depth Score,0.92,0.58,+59%

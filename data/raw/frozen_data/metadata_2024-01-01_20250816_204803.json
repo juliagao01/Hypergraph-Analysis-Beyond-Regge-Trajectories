@@ -1,0 +1,17 @@
+{
+  "pdg_date": "2024-01-01",
+  "software_version": "Python 3.9.7",
+  "kappa": 0.25,
+  "filters_applied": {
+    "family": "Delta",
+    "status": [
+      "***",
+      "**"
+    ]
+  },
+  "data_hash": "af1e6f1bc9c7f8d9",
+  "extraction_timestamp": "2025-08-16T20:48:03.495149",
+  "unit_system": "GeV",
+  "particle_count": 20,
+  "family_count": 1
+}

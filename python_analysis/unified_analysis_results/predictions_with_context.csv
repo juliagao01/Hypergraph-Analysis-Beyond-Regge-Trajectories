@@ -1,0 +1,6 @@
+J,predicted_mass_gev,mass_window_gev,nearest_community,community_purity,confidence,notes
+11.5,3.8769938200983867,0.2,1,0.6843500587442787,medium,Community 1 has 0.68 purity
+12.5,4.047521764293854,0.1,1,0.8020954455488758,high,Community 1 has 0.80 purity
+13.5,4.211149936036923,0.1,1,0.8032667912592739,high,Community 1 has 0.80 purity
+14.5,4.368653698238753,0.2,0,0.6594144943264614,medium,Community 0 has 0.66 purity
+15.5,4.520673233765795,0.2,2,0.6040252845421862,medium,Community 2 has 0.60 purity

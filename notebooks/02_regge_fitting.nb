@@ -1,0 +1,140 @@
+(* ::Package:: *)
+
+(* ===== Delta Baryon Regge Trajectory Analysis ===== *)
+
+(* Data for Delta baryon family *)
+deltaData = {
+  {"Delta(1232)", 1.5, 1.232, 0.001, 1.517824, 0.002464},
+  {"Delta(1600)", 1.5, 1.6, 0.01, 2.56, 0.032},
+  {"Delta(1620)", 2.5, 1.62, 0.005, 2.6244, 0.0162},
+  {"Delta(1700)", 2.5, 1.7, 0.01, 2.89, 0.034},
+  {"Delta(1900)", 3.5, 1.9, 0.02, 3.61, 0.076},
+  {"Delta(1905)", 3.5, 1.905, 0.015, 3.629025, 0.05715},
+  {"Delta(1910)", 4.5, 1.91, 0.02, 3.6481, 0.0764},
+  {"Delta(1920)", 4.5, 1.92, 0.015, 3.6864, 0.0576},
+  {"Delta(1930)", 5.5, 1.93, 0.02, 3.7249, 0.0772},
+  {"Delta(1950)", 5.5, 1.95, 0.025, 3.8025, 0.0975},
+  {"Delta(2000)", 6.5, 2.0, 0.03, 4.0, 0.12},
+  {"Delta(2150)", 6.5, 2.15, 0.025, 4.6225, 0.1075},
+  {"Delta(2200)", 7.5, 2.2, 0.03, 4.84, 0.132},
+  {"Delta(2300)", 7.5, 2.3, 0.035, 5.29, 0.161},
+  {"Delta(2350)", 8.5, 2.35, 0.04, 5.5225, 0.188},
+  {"Delta(2400)", 8.5, 2.4, 0.045, 5.76, 0.216},
+  {"Delta(2420)", 9.5, 2.42, 0.05, 5.8564, 0.242},
+  {"Delta(2500)", 9.5, 2.5, 0.055, 6.25, 0.275},
+  {"Delta(2600)", 10.5, 2.6, 0.06, 6.76, 0.312},
+  {"Delta(2750)", 10.5, 2.75, 0.065, 7.5625, 0.3575}
+};
+
+(* Extract data columns *)
+names = deltaData[[All, 1]];
+J = deltaData[[All, 2]];
+M = deltaData[[All, 3]];
+MErr = deltaData[[All, 4]];
+M2 = deltaData[[All, 5]];
+M2Err = deltaData[[All, 6]];
+
+(* Calculate J errors from mass errors *)
+JErr = 2 * M * MErr * Sqrt[M2] / M;
+
+(* Fit linear Regge trajectory: J = α₀ + α' M² *)
+fitData = Transpose[{M2, J, JErr}];
+reggeFit = LinearModelFit[fitData, {1, x}, x, Weights -> 1/JErr^2];
+
+(* Extract fit parameters *)
+alpha0 = reggeFit["ParameterTableEntries"][[1, 1]];
+alpha0Err = reggeFit["ParameterTableEntries"][[1, 2]];
+alphap = reggeFit["ParameterTableEntries"][[2, 1]];
+alphapErr = reggeFit["ParameterTableEntries"][[2, 2]];
+
+(* Calculate fit statistics *)
+chi2 = reggeFit["ANOVATableSumsOfSquares"][[2]];
+dof = Length[M2] - 2;
+chi2Dof = chi2 / dof;
+rSquared = reggeFit["RSquared"];
+
+(* Create the Regge trajectory plot *)
+reggePlot = Show[
+  (* Data points with error bars *)
+  ErrorListPlot[
+    Transpose[{M2, J, JErr}],
+    PlotStyle -> {Blue, PointSize[0.02]},
+    PlotMarkers -> Automatic,
+    Frame -> True,
+    FrameLabel -> {"M² (GeV²)", "J (Spin)", "", ""},
+    PlotLabel -> Style["Regge Trajectory: Δ Baryon Family", 16, Bold],
+    GridLines -> Automatic,
+    ImageSize -> 600
+  ],
+  
+  (* Fitted line *)
+  Plot[reggeFit[x], {x, Min[M2] * 0.9, Max[M2] * 1.1},
+    PlotStyle -> {Red, Thick},
+    PlotLegends -> {Row[{"Linear Fit: J = ", NumberForm[alpha0, {4, 3}], 
+                         " ± ", NumberForm[alpha0Err, {4, 3}], " + (",
+                         NumberForm[alphap, {4, 3}], " ± ", 
+                         NumberForm[alphapErr, {4, 3}], ") M²"}]}]
+  ],
+  
+  (* Add particle labels *)
+  Graphics[
+    MapThread[
+      Text[#1, {#2, #3}, {1.5, 1.5}] &,
+      {names, M2, J}
+    ]
+  ],
+  
+  (* Add fit statistics *)
+  Graphics[
+    Text[
+      Style[
+        "Fit Statistics:\n" <>
+        "α₀ = " <> ToString[NumberForm[alpha0, {4, 3}]] <> " ± " <> 
+        ToString[NumberForm[alpha0Err, {4, 3}]] <> "\n" <>
+        "α' = " <> ToString[NumberForm[alphap, {4, 3}]] <> " ± " <> 
+        ToString[NumberForm[alphapErr, {4, 3}]] <> "\n" <>
+        "χ²/dof = " <> ToString[NumberForm[chi2Dof, {4, 3}]] <> "\n" <>
+        "R² = " <> ToString[NumberForm[rSquared, {4, 3}]] <> "\n" <>
+        "N = " <> ToString[Length[M2]] <> " states",
+        11
+      ],
+      {0.05, 0.95}, {-1, 1}
+    ]
+  ]
+];
+
+(* Display the plot *)
+reggePlot
+
+(* Print fit results *)
+Print["Regge Trajectory Fit Results:"];
+Print["α₀ = ", NumberForm[alpha0, {6, 4}], " ± ", NumberForm[alpha0Err, {6, 4}]];
+Print["α' = ", NumberForm[alphap, {6, 4}], " ± ", NumberForm[alphapErr, {6, 4}]];
+Print["χ²/dof = ", NumberForm[chi2Dof, {6, 3}]];
+Print["R² = ", NumberForm[rSquared, {6, 4}]];
+Print["Number of states: ", Length[M2]];
+
+(* Calculate residuals for analysis *)
+residuals = J - reggeFit[M2];
+residualPlot = ListPlot[
+  Transpose[{M2, residuals}],
+  PlotStyle -> {Blue, PointSize[0.02]},
+  Frame -> True,
+  FrameLabel -> {"M² (GeV²)", "Residuals (J - J_fit)", "", ""},
+  PlotLabel -> Style["Regge Trajectory Residuals", 16, Bold],
+  GridLines -> Automatic,
+  ImageSize -> 600
+];
+
+(* Display residuals plot *)
+residualPlot
+
+(* Summary statistics *)
+Print["\nResidual Analysis:"];
+Print["Mean residual: ", NumberForm[Mean[residuals], {6, 4}]];
+Print["RMS residual: ", NumberForm[Sqrt[Mean[residuals^2]], {6, 4}]];
+Print["Max residual: ", NumberForm[Max[Abs[residuals]], {6, 4}]];
+
+(* Export the plot *)
+Export["delta_regge_trajectory_wolfram.png", reggePlot, ImageResolution -> 300];
+Export["delta_regge_trajectory_wolfram.pdf", reggePlot];

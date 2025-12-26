@@ -1,0 +1,53 @@
+================================================================================
+PROVENANCE REPORT
+================================================================================
+
+Analysis Information:
+------------------------------
+Analysis Date: 2025-08-16T20:48:06.295229
+PDG Snapshot Date: 2024-01-01
+Data Hash: 
+Code Hash: 
+
+Software Versions:
+------------------------------
+python: 3.13.2 (main, Feb  4 2025, 14:51:09) [Clang 15.0.0 (clang-1500.1.0.2.5)]
+numpy: 2.3.2
+pandas: 2.3.1
+matplotlib: 3.10.5
+scipy: 1.16.1
+scikit-learn: 1.7.1
+networkx: 3.5
+
+Analysis Settings:
+------------------------------
+kappa: 0.25
+bootstrap_n: 2000
+confidence_level: 0.68
+n_sigma_threshold: 2.0
+
+Platform Information:
+------------------------------
+platform: macOS-13.4-arm64-arm-64bit-Mach-O
+python_implementation: CPython
+python_version: 3.13.2
+machine: arm64
+processor: arm
+
+Export Summary:
+------------------------------
+ Type                Filename Format                                  Filepath                  Timestamp  HasMetadata
+table    regge_fit_parameters   json   paper_exports/regge_fit_parameters.json 2025-08-16T20:48:06.356177        False
+table        mass_predictions    csv        paper_exports/mass_predictions.csv 2025-08-16T20:48:06.359839        False
+table pdg_cross_check_results    csv paper_exports/pdg_cross_check_results.csv 2025-08-16T20:48:06.362046        False
+table       regge_diagnostics   json      paper_exports/regge_diagnostics.json 2025-08-16T20:48:06.362768        False
+table      hypergraph_metrics   json     paper_exports/hypergraph_metrics.json 2025-08-16T20:48:06.363934        False
+table          motif_analysis   json         paper_exports/motif_analysis.json 2025-08-16T20:48:06.364722        False
+table       method_comparison    csv       paper_exports/method_comparison.csv 2025-08-16T20:48:06.368087        False
+table     performance_metrics   json    paper_exports/performance_metrics.json 2025-08-16T20:48:06.370691        False
+table       baseline_analysis   json      paper_exports/baseline_analysis.json 2025-08-16T20:48:06.372086        False
+table       stability_metrics   json      paper_exports/stability_metrics.json 2025-08-16T20:48:06.372481        False
+table            data_changes   json           paper_exports/data_changes.json 2025-08-16T20:48:06.372727        False
+table          export_summary    csv          paper_exports/export_summary.csv 2025-08-16T20:48:06.373596        False
+
+================================================================================
