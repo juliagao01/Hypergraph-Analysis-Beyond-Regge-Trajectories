@@ -12,13 +12,6 @@ Traditional Regge trajectory analysis provides powerful insights into hadron spe
 - **Network topology analysis**: Hypergraph representations of decay channels with structural feature extraction
 - **Reliability assessment**: Confidence scores based on decay-network coherence for predicted missing states
 
-### Key Results
-
-- Strong linear Regge correlation for Δ baryons: **R² = 0.90**, slope α' = 0.74 ± 0.44 GeV⁻²
-- Residual scatter correlates with resonance width: **r = 0.81, p < 0.001**
-- Three missing-state predictions with network-informed confidence scores
-- Reproducible framework applicable to any hadron family
-
 ## Features
 
 ### Trajectory Analysis
@@ -127,46 +120,6 @@ Predicted states receive reliability scores based on:
 - Community purity of associated decay cluster
 - Extrapolation distance from fitted data
 - Network coherence metrics
-
-## Results Summary
-
-### Trajectory Fits
-| Family | Slope α' (GeV⁻²) | Intercept α₀ | R² | χ²/dof |
-|--------|------------------|--------------|-----|--------|
-| Δ      | 0.74 ± 0.44      | 0.5 ± 0.2    | 0.90| 18.5   |
-
-### Residual Analysis
-- Width correlation: r = 0.81, p < 0.001
-- Quality controls explain 65% of variance
-- Hypergraph features: ΔR² = 0.03 (not significant in n=20 pilot)
-
-### Missing State Predictions
-| J    | Mass (GeV)    | Confidence | Priority |
-|------|---------------|------------|----------|
-| 11.5 | 3.88 ± 0.83   | 0.72       | High     |
-| 13.5 | 4.21 ± 0.95   | 0.65       | High     |
-| 15.5 | 4.52 ± 1.07   | 0.45       | Low      |
-
-## Citation
-
-If you use this code or methodology in your research, please cite:
-```bibtex
-@article{gao2025hypergraph,
-  title={Hypergraph-Based Decay Analysis for Predicting and Classifying States Beyond Regge Trajectories},
-  author={Gao, Julia},
-  year={2025}
-}
-```
-
-## Extensions & Future Work
-
-This framework is designed to be extensible:
-
-- **Other baryon families**: N*, Λ*, Σ (~50 additional states)
-- **Meson trajectories**: ρ, ω, K* families
-- **Bayesian hierarchical models**: Simultaneous trajectory + structure fitting
-- **Beyond hadron physics**: Applicable to any system with spectral patterns and decay networks
-
 
 ## License
 This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
